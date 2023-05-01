@@ -9,6 +9,8 @@
 <style>
     <?php include './styles/styles.css'; ?>
 </style>
+
+<h1>Переключиться на пользователя</h1>
 <?php
     $mysqli = mysqli_connect($host, $user, $password, $db_name);
 
@@ -30,8 +32,9 @@
                 echo "<li>$key -> $value</li>";
             }
         }
+        $email = $item['email'];
         $encode = urlencode(serialize($item));
-        echo "<li>channel -> <a href='/user/user_videos.php?user=$encode'>channel</a></li>";
+        echo "<li>channel -> Войти как <a href='/user/user_videos.php?user=$encode'>$email</a></li>";
         echo "</ul>";
         echo "<hr>";
     }

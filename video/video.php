@@ -19,6 +19,7 @@
     }
     $video = $row['id'];
     $author = $row['user_id'];
+    $views = $row['views'] + 1;
     $sql = "SELECT * FROM `comments` where video_id = '$video'";
     $sql2 = "SELECT * FROM `users` where id = $author";
     $list = [];
@@ -34,13 +35,18 @@
             $row2 = $q_row_2;
         }
     }
+
+    $view_sql_query = "UPDATE `videos` SET `views` = '$views' WHERE (`id` = '$video')";
+
+    $mysqli -> query($view_sql_query);
+
     $mysqli -> close();
 ?>
 <body>
     <style>
         <?php include '../styles/styles.css'; ?>
     </style>
-    <video controls width='1000' height='562'><source src='../videos/<?=$video_url?>.mp4' type='video/mp4'></video>
+    <video autoplay="autoplay" controls width='1000' height='562'><source src='../videos/<?=$video_url?>.mp4' type='video/mp4'></video>
     <p class='title_video'><?=$video_url?></p>
     <div>
         <img class="img-icon" width="48" height="48" src="../avatars/<?=$row2['icon']?>" alt="logo">

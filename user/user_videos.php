@@ -21,20 +21,44 @@
     }
 ?>
 
+<style>
+    <?php include "../styles/styles.css";?>
+</style>
+
+<h1>Ваши видео</h1>
+
 <?php
-extracted($list);
+foreach ($list as $item) {
+    $name = $item['name'];
+    $preview = $item['preview'];
+    $views = $item['views'];
+    $link = $item['link'];
+    echo "<div class='container' '>
+                        <div class='image'>
+                            <img width='300' src='../previews/$preview' class='preview'>
+                        </div>
+                        <div class='colum'>
+                            <div>
+                                <a class='title_search' href='../video/video.php?video_id=$name'>$name</a>  
+                            </div>
+                            <div>
+                                <p style='font-size: 15px'>$views просмотров</p>
+                            </div>
+                        </div>
+                     </div>";
+}
 ?>
 
 <h2>Загрузка</h2>
 
 <form action="../video/upload.php?user=<?=urlencode(serialize($user_obj))?>" method="post" enctype="multipart/form-data">
     Description: <label>
-        <input type="text" name="vid_desk">
-    </label><br>
-    Video: <label>
-        <input type="file" name="video">
+        <input class="input_desc" type="text" name="vid_desk">
     </label><br><br>
-    <button type="submit" name="submit">UPLOAD</button>
+    Video: <label>
+        <input class="input_desc" type="file" name="video">
+    </label><br><br>
+    <button class="upload" type="submit" name="submit">UPLOAD</button>
 </form>
 
 <?php
