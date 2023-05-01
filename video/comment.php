@@ -12,9 +12,9 @@
         header("Location: video.php?video_id=$video_name");
         die();
     }
-
+    $cookie_id = json_decode($_COOKIE['user']) -> id;
     $sql = "INSERT INTO comments (`user_id`, `video_id`, `text`, `likes`, `dislikes`) 
-                            VALUES (1, $video_id, '$text', 0, 0)";
+                            VALUES ($cookie_id, $video_id, '$text', 0, 0)";
 
     if($mysqli->query($sql)){
         echo "Данные успешно добавлены";
