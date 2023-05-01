@@ -26,7 +26,7 @@
             }
         }
         foreach ($list as $item) {
-            if (strpos($item['name'], strtolower(trim($text))) !== false) {
+            if (strpos(mb_strtolower($item['name']), mb_strtolower(trim($text))) !== false) {
 
                 $user_id = $item['user_id'];
                 $sql_q = "SELECT * FROM `users` WHERE id = '$user_id'";
