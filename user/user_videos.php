@@ -22,22 +22,7 @@
 ?>
 
 <?php
-    for ($i = 0; $i < sizeof($list); $i++) {
-        $name = $list[$i]['name'];
-        $desc = $list[$i]['desc'];
-        $preview = $list[$i]['preview'];
-        $link = $list[$i]['link'];
-        $likes = $list[$i]['likes'];
-        $dislikes = $list[$i]['dislikes'];
-        $views = $list[$i]['views'];
-
-        echo "<ul>
-                <li>$name</li>
-                <li>$preview</li>
-                <li><a href='../video/video.php?video_id=$name'>../video/video.php?video_id=$name'</a></li>
-                <li>$views</li>
-              </ul><hr>";
-    }
+extracted($list);
 ?>
 
 <h2>Загрузка</h2>

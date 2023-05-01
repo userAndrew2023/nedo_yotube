@@ -8,3 +8,16 @@
     <link rel="stylesheet" href="../styles/styles.css">
     <title><?=$title?></title>
 </head>
+
+<div class="img_ic">
+    <img src="../icon.png" alt="logo" width="200" style="display: inline-block;">
+</div>
+
+<div>
+    <form action="../search/search.php" method="post">
+        <label>
+            <input type="text" name="text" class="search_edit" placeholder="Введите поисковый запрос и нажмите Enter">
+        </label>
+    </form>
+</div>
+

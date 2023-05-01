@@ -86,3 +86,17 @@ body {
     vertical-align: middle;
     margin-bottom: 20px;
 }
+
+.search_edit {
+    font-size: 20px;
+    font-family: "Source Sans Pro", sans-serif;
+    width: 965px;
+    padding: 15px;
+    border-radius: 12px;
+    border-color: #e6e6e6;
+    margin-bottom: 15px;
+}
+
+.img_ic {
+    margin-left: 400px;
+}
