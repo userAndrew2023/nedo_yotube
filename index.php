@@ -4,6 +4,12 @@
     $password = "password!";
     $db_name = "ruvie";
     require_once "blocks/header.php";
+?>
+
+<style>
+    <?php include './styles/styles.css'; ?>
+</style>
+<?php
     $mysqli = mysqli_connect($host, $user, $password, $db_name);
 
     $sql = "SELECT * FROM `users`";
@@ -24,7 +30,8 @@
                 echo "<li>$key -> $value</li>";
             }
         }
-        echo "<li>channel -> <a href='/user/user_videos.php?user_id=$id'>channel</a></li>";
+        $encode = urlencode(serialize($item));
+        echo "<li>channel -> <a href='/user/user_videos.php?user=$encode'>channel</a></li>";
         echo "</ul>";
         echo "<hr>";
     }

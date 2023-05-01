@@ -17,8 +17,9 @@
             $row = $q_row;
         }
     }
+    $video = $row['id'];
     $author = $row['user_id'];
-    $sql = "SELECT * FROM `comments`";
+    $sql = "SELECT * FROM `comments` where video_id = '$video'";
     $sql2 = "SELECT * FROM `users` where id = $author";
     $list = [];
     if($result = $mysqli -> query($sql)){
@@ -42,20 +43,30 @@
     <video controls width='1000' height='562'><source src='../videos/<?=$video_url?>.mp4' type='video/mp4'></video>
     <p class='title_video'><?=$video_url?></p>
     <div>
-        <p>Автор: <a href="../user/user_videos.php?user_id=<?=$row2['id']?>"><?=$row2['name']?></a></p>
+        <img class="img-icon" width="48" height="48" src="../avatars/<?=$row2['icon']?>" alt="logo">
+        <span style="vertical-align: middle;">
+            <a class="author_title_video" href="../user/user_videos.php?user_id=<?=$row2['id']?>"><?=$row2['name']?></a>
+        </span>
+        <button class="sub" style="display: inline-block; vertical-align: middle;">Подписаться</button>
     </div>
     <p class="desc"><?=$row['desc']?></p>
 
     <form action="comment.php?video_id=<?=$row['id']?>&video_name=<?=$row['name']?>" method="post">
         <label>
-            <input name="text">
-        </label>
-        <button type="submit">Отправить</button>
+            <input class="comment_edit" placeholder="Введите комментарий" name="text" autocomplete="off">
+        </label><br>
+        <button type="submit" class="send">Отправить</button>
     </form>
 
     <?php
+        $cookie_user = json_decode($_COOKIE['user']);
         foreach ($list as $item) {
-            echo "<p class='comment'>" . $item['text'] . "</p>";
+            if ($item['user_id'] == $cookie_user -> id) {
+                $id = $item['id'];
+                echo "<p class='comment'>" . $item['text'] . "<a href='delete_comment.php?id=$id&video_id=$video_url' style='float: right; font-weight: 600; cursor: pointer'>Удалить</a></p>";
+            } else {
+                echo "<p class='comment'>" . $item['text'] . "</p>";
+            }
         }
     ?>
 

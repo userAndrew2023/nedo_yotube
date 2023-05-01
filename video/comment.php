@@ -8,6 +8,10 @@
     $video_id = $_GET['video_id'];
     $video_name = $_GET['video_name'];
     $text = $_POST['text'];
+    if ($text == "") {
+        header("Location: video.php?video_id=$video_name");
+        die();
+    }
 
     $sql = "INSERT INTO comments (`user_id`, `video_id`, `text`, `likes`, `dislikes`) 
                             VALUES (1, $video_id, '$text', 0, 0)";
